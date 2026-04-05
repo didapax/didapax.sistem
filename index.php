@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Didapax System | Daniel Alfonsi Portfolio</title>
+    <title>Didapax Sistem | Daniel Alfonsi Portfolio</title>
     <meta name="description" content="Soluciones Tecnológicas de Alto Impacto. Desde Finanzas Automatizadas hasta el Futuro del Agro. Daniel Alfonsi, Desarrollador Senior Full-Stack.">
     <link rel="stylesheet" href="index.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
     <div class="bg-gradient"></div>
 
     <nav>
-        <a href="#" class="logo">DIDAPAX<span>SYSTEM</span></a>
+        <a href="#" class="logo">DIDAPAX<span>SISTEM</span></a>
         <div class="nav-links">
             <a href="#about">Sobre Mí</a>
             <a href="#portfolio">Portafolio</a>
@@ -21,9 +22,9 @@
     </nav>
 
     <header class="hero">
-        <h1 class="reveal">Didapax System</h1>
+        <h1 class="reveal">Didapax Sistem</h1>
         <p class="subtitle reveal">Soluciones Tecnológicas de Alto Impacto: Desde Finanzas Automatizadas hasta el Futuro del Agro.</p>
-        <p class="hero-intro reveal">Soy Daniel Alfonsi, desarrollador Senior Full-Stack y fundador de Didapax System. Me especializo en crear ecosistemas digitales robustos que resuelven problemas del mundo real mediante arquitecturas optimizadas y escalables.</p>
+        <p class="hero-intro reveal">Soy Daniel Alfonsi, desarrollador Senior Full-Stack y fundador de Didapax Sistem. Me especializo en crear ecosistemas digitales robustos que resuelven problemas del mundo real mediante arquitecturas optimizadas y escalables.</p>
     </header>
 
     <section id="about" class="reveal">
@@ -76,7 +77,7 @@
         <div class="footer-content">
             <div class="footer-info">
                 <h4>Daniel Alfonsi</h4>
-                <p>Fundador de Didapax System</p>
+                <p>Fundador de Didapax Sistem</p>
                 <p>Ubicación: Sucre, Venezuela.</p>
             </div>
             <div class="footer-info">
@@ -88,7 +89,7 @@
                 <p><a href="https://github.com/didapax" target="_blank" style="color: var(--accent-blue);">GitHub</a></p>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">&copy; <?php echo date('Y'); ?> Didapax System. Todos los derechos reservados.</p>
+        <p style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">&copy; <?php echo date('Y'); ?> Didapax Sistem Daniel Alfonsi. Todos los derechos reservados.</p>
     </footer>
 
     <script>
