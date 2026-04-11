@@ -40,15 +40,15 @@
             <div class="glass-card portfolio-card reveal">
                 <h3>Algometric (Fintech)</h3>
                 <p>Plataforma avanzada de análisis técnico y trading automatizado. Implementación de algoritmos basados en indicadores de precisión (Stochastic, MACD, Fibonacci) para la optimización de activos digitales.</p>
-                <a href="https://algometric.biz/signal" target="_blank" class="btn-link">Visitar algometric.info</a>
+                <a href="https://algometric.biz/signal" target="_blank" class="btn-link">Visitar Algometric</a>
             </div>
             <div class="glass-card portfolio-card reveal">
                 <h3>Bitcacao / Koawallet</h3>
                 <p>Transformando la industria del cacao mediante la tokenización de peso y el control de calidad digital. Una solución integral para la trazabilidad y el empoderamiento de los productores locales.</p>
-                <a href="https://bitcacao.biz" target="_blank" class="btn-link">Visitar bitcacao.com</a>
+                <a href="https://bitcacao.biz" target="_blank" class="btn-link">Visitar BitCacao</a>
             </div>
             <div class="glass-card portfolio-card reveal">
-                <h3>Paradigma EDU360</h3>
+                <h3>Aura Protocol</h3>
                 <p>Ecosistema educativo diseñado para el monitoreo del conocimiento mediante inteligencia artificial, facilitando la gestión de aulas virtuales y auditorías académicas.</p>
                 <a href="#" class="btn-link">Ver Proyecto</a>
             </div>
