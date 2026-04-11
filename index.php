@@ -40,7 +40,7 @@
             <div class="glass-card portfolio-card reveal">
                 <h3>Algometric (Fintech)</h3>
                 <p>Plataforma avanzada de análisis técnico y trading automatizado. Implementación de algoritmos basados en indicadores de precisión (Stochastic, MACD, Fibonacci) para la optimización de activos digitales.</p>
-                <a href="https://algometric.biz" target="_blank" class="btn-link">Visitar algometric.info</a>
+                <a href="https://algometric.biz/signal" target="_blank" class="btn-link">Visitar algometric.info</a>
             </div>
             <div class="glass-card portfolio-card reveal">
                 <h3>Bitcacao / Koawallet</h3>
