@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Didapax Sistem | Daniel Alfonsi Portfolio</title>
     <meta name="description" content="Soluciones Tecnológicas de Alto Impacto. Desde Finanzas Automatizadas hasta el Futuro del Agro. Daniel Alfonsi, Desarrollador Senior Full-Stack.">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=1.1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -18,6 +19,11 @@
             <a href="#portfolio">Portafolio</a>
             <a href="#values">Valores</a>
             <a href="#contact">Contacto</a>
+        </div>
+        <div class="menu-toggle" id="mobile-menu">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </div>
     </nav>
 
@@ -78,15 +84,15 @@
             <div class="footer-info">
                 <h4>Daniel Alfonsi</h4>
                 <p>Fundador de Didapax Sistem</p>
-                <p>Ubicación: Sucre, Venezuela.</p>
+                <p><i class="fa-solid fa-location-dot"></i> Ubicación: Sucre, Venezuela.</p>
             </div>
             <div class="footer-info">
                 <h4>Soporte</h4>
-                <p>Email: contacto@didapax.sistem.com</p>
+                <p><i class="fa-solid fa-envelope"></i> Email: didapax.sistem@didapax.biz</p>
             </div>
             <div class="footer-info">
                 <h4>Enlaces Rápidos</h4>
-                <p><a href="https://github.com/didapax" target="_blank" style="color: var(--accent-blue);">GitHub</a></p>
+                <p><a href="https://github.com/didapax" target="_blank" style="color: var(--accent-blue); text-decoration: none;"><i class="fa-brands fa-github"></i> GitHub</a></p>
             </div>
         </div>
         <p style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">&copy; <?php echo date('Y'); ?> Didapax Sistem Daniel Alfonsi. Todos los derechos reservados.</p>
@@ -103,6 +109,26 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        const nav = document.querySelector('nav');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+            nav.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+                nav.classList.remove('active');
+            });
+        });
     </script>
 </body>
 </html>
