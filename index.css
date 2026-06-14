@@ -395,3 +395,300 @@ footer {
         text-align: center;
     }
 }
+
+/* ==========================================
+   Cryptex Modal and Interface
+   ========================================== */
+.cryptex-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 12, 16, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    padding: 20px;
+}
+
+.cryptex-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cryptex-content {
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    border: 1px solid var(--glass-border);
+    background: rgba(18, 22, 31, 0.85) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 212, 255, 0.1);
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.cryptex-modal.active .cryptex-content {
+    transform: scale(1);
+}
+
+.cryptex-content::-webkit-scrollbar {
+    width: 6px;
+}
+.cryptex-content::-webkit-scrollbar-thumb {
+    background: var(--accent-blue);
+    border-radius: 3px;
+}
+
+.cryptex-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    line-height: 1;
+}
+
+.cryptex-close:hover {
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+.cryptex-content h3 span {
+    color: var(--accent-blue);
+}
+
+.cryptex-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: rgba(0, 212, 255, 0.05);
+    border: 1px dashed rgba(0, 212, 255, 0.3);
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: var(--text-main);
+    line-height: 1.4;
+}
+
+.cryptex-banner i {
+    color: var(--accent-blue);
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+.cryptex-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--glass-border);
+    gap: 10px;
+}
+
+.cryptex-tab-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition-smooth);
+    font-family: 'Outfit', sans-serif;
+}
+
+.cryptex-tab-btn:hover {
+    color: var(--text-main);
+}
+
+.cryptex-tab-btn.active {
+    color: var(--accent-blue);
+}
+
+.cryptex-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-blue);
+    box-shadow: 0 0 10px var(--accent-blue);
+}
+
+.cryptex-pane {
+    display: none;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.cryptex-pane.active {
+    display: flex;
+    animation: cryptexFadeIn 0.3s ease;
+}
+
+@keyframes cryptexFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.cryptex-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cryptex-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.cryptex-group textarea,
+.cryptex-input-wrapper input {
+    width: 100%;
+    background: rgba(10, 12, 16, 0.6);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    color: var(--text-main);
+    padding: 12px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition-smooth);
+}
+
+.cryptex-group textarea:focus,
+.cryptex-input-wrapper input:focus {
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.15);
+}
+
+.cryptex-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.cryptex-input-wrapper input {
+    padding-right: 45px;
+}
+
+.cryptex-toggle-pass {
+    position: absolute;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition-smooth);
+}
+
+.cryptex-toggle-pass:hover {
+    color: var(--text-main);
+}
+
+.cryptex-action-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, var(--accent-indigo), var(--accent-blue));
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.cryptex-action-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+}
+
+.cryptex-action-btn:active {
+    transform: translateY(0);
+}
+
+.cryptex-result {
+    margin-top: 10px;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 1.2rem;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    animation: cryptexFadeIn 0.4s ease;
+}
+
+.cryptex-result.active {
+    display: flex;
+}
+
+.cryptex-output-box {
+    display: flex;
+    align-items: stretch;
+    background: rgba(10, 12, 16, 0.8);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.cryptex-output-box pre {
+    flex-grow: 1;
+    padding: 12px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    white-space: pre-wrap;
+    word-break: break-all;
+    max-height: 120px;
+    overflow-y: auto;
+    margin: 0;
+}
+
+.cryptex-copy-btn {
+    background: rgba(0, 212, 255, 0.1);
+    border: none;
+    border-left: 1px solid rgba(0, 212, 255, 0.2);
+    color: var(--accent-blue);
+    padding: 0 15px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cryptex-copy-btn:hover {
+    background: var(--accent-blue);
+    color: #000;
+}
+
+.cryptex-warning-text {
+    font-size: 0.75rem;
+    color: #ff5e5e;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

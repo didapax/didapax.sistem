@@ -58,6 +58,11 @@
                 <p>Ecosistema educativo diseñado para el monitoreo del conocimiento mediante inteligencia artificial, facilitando la gestión de aulas virtuales y auditorías académicas.</p>
                 <a href="#" class="btn-link">Ver Proyecto</a>
             </div>
+            <div class="glass-card portfolio-card reveal">
+                <h3>Cryptex (Offline Safe)</h3>
+                <p>Herramienta Offline-First para cifrar y descifrar frases de recuperación (12 palabras) o cartas secretas de forma 100% local en tu dispositivo con cifrado AES-256 de grado militar.</p>
+                <button class="btn-link" id="open-cryptex-btn" style="border: none; cursor: pointer; text-align: center; font-family: inherit;">Abrir Cryptex</button>
+            </div>
         </div>
     </section>
 
@@ -98,6 +103,97 @@
         <p style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">&copy; <?php echo date('Y'); ?> Didapax Sistem Daniel Alfonsi. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Cryptex Modal -->
+    <div class="cryptex-modal" id="cryptex-modal">
+        <div class="cryptex-content glass-card">
+            <button class="cryptex-close" id="close-cryptex-btn" aria-label="Cerrar modal">&times;</button>
+            
+            <h3 style="font-size: 1.8rem; display: flex; align-items: center; gap: 12px; margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-key" style="color: var(--accent-blue);"></i> Cryptex: <span>Cifrado Seguro</span>
+            </h3>
+            
+            <div class="cryptex-banner">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div>
+                    <strong>Seguridad 100% Local (Offline-First):</strong> Todo el cifrado y descifrado ocurre directamente en tu navegador usando la API nativa de criptografía del sistema. Tus datos o contraseñas jamás viajan al servidor ni se guardan en ninguna base de datos.
+                </div>
+            </div>
+
+            <div class="cryptex-tabs">
+                <button class="cryptex-tab-btn active" data-tab="encrypt-pane">Encriptar</button>
+                <button class="cryptex-tab-btn" data-tab="decrypt-pane">Desencriptar</button>
+            </div>
+
+            <!-- Panel de Encriptar -->
+            <div class="cryptex-pane active" id="encrypt-pane">
+                <div class="cryptex-group">
+                    <label for="encrypt-input">Texto o Semilla (12 palabras)</label>
+                    <textarea id="encrypt-input" rows="4" placeholder="Escribe aquí tu frase de 12 palabras o tu carta secreta..."></textarea>
+                    <div id="encrypt-word-count" style="font-size: 0.8rem; color: var(--text-muted); text-align: right; margin-top: 4px;">Palabras: 0</div>
+                </div>
+
+                <div class="cryptex-group">
+                    <label for="encrypt-password">Clave Secreta para Cifrar</label>
+                    <div class="cryptex-input-wrapper">
+                        <input type="password" id="encrypt-password" placeholder="Ingresa una clave segura para encriptar...">
+                        <button type="button" class="cryptex-toggle-pass" data-target="encrypt-password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="cryptex-warning-text">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Guarda bien esta clave. Si la olvidas, nadie podrá descifrar tu mensaje.
+                    </span>
+                </div>
+
+                <button class="cryptex-action-btn" id="encrypt-btn">
+                    <i class="fa-solid fa-lock"></i> Encriptar Texto
+                </button>
+
+                <div class="cryptex-result" id="encrypt-result">
+                    <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Mensaje Encriptado (Base64)</label>
+                    <div class="cryptex-output-box">
+                        <pre id="encrypt-output"></pre>
+                        <button class="cryptex-copy-btn" id="copy-encrypt-btn" title="Copiar texto encriptado">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Desencriptar -->
+            <div class="cryptex-pane" id="decrypt-pane">
+                <div class="cryptex-group">
+                    <label for="decrypt-input">Mensaje Encriptado (Base64)</label>
+                    <textarea id="decrypt-input" rows="4" placeholder="Pega aquí el código encriptado generado por Cryptex..."></textarea>
+                </div>
+
+                <div class="cryptex-group">
+                    <label for="decrypt-password">Clave Secreta para Descifrar</label>
+                    <div class="cryptex-input-wrapper">
+                        <input type="password" id="decrypt-password" placeholder="Ingresa la clave que se usó para encriptar...">
+                        <button type="button" class="cryptex-toggle-pass" data-target="decrypt-password">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button class="cryptex-action-btn" id="decrypt-btn">
+                    <i class="fa-solid fa-lock-open"></i> Desencriptar Texto
+                </button>
+
+                <div class="cryptex-result" id="decrypt-result">
+                    <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Mensaje Descifrado Original</label>
+                    <div class="cryptex-output-box">
+                        <pre id="decrypt-output"></pre>
+                        <button class="cryptex-copy-btn" id="copy-decrypt-btn" title="Copiar texto descifrado">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Simple Intersection Observer to reveal elements on scroll
         const observer = new IntersectionObserver((entries) => {
@@ -129,6 +225,270 @@
                 nav.classList.remove('active');
             });
         });
+
+        // Cryptex Cryptography & UI Controller
+        (function() {
+            // UI Elements
+            const openBtn = document.getElementById('open-cryptex-btn');
+            const closeBtn = document.getElementById('close-cryptex-btn');
+            const modal = document.getElementById('cryptex-modal');
+            
+            if (!openBtn || !closeBtn || !modal) return;
+
+            // Toggle Modal
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            // Tab Switching
+            const tabBtns = document.querySelectorAll('.cryptex-tab-btn');
+            const panes = document.querySelectorAll('.cryptex-pane');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    panes.forEach(p => p.classList.remove('active'));
+
+                    btn.classList.add('active');
+                    const activePane = document.getElementById(btn.getAttribute('data-tab'));
+                    if (activePane) activePane.classList.add('active');
+                });
+            });
+
+            // Toggle Password Visibility
+            const passToggles = document.querySelectorAll('.cryptex-toggle-pass');
+            passToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const inputId = toggle.getAttribute('data-target');
+                    const input = document.getElementById(inputId);
+                    const icon = toggle.querySelector('i');
+                    if (!input || !icon) return;
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.classList.replace('fa-eye', 'fa-eye-slash');
+                    } else {
+                        input.type = 'password';
+                        icon.classList.replace('fa-eye-slash', 'fa-eye');
+                    }
+                });
+            });
+
+            // Word Counter for Encryption input
+            const encryptInput = document.getElementById('encrypt-input');
+            const wordCounter = document.getElementById('encrypt-word-count');
+
+            if (encryptInput && wordCounter) {
+                encryptInput.addEventListener('input', () => {
+                    const text = encryptInput.value.trim();
+                    const words = text ? text.split(/\s+/).length : 0;
+                    wordCounter.textContent = `Palabras: ${words}`;
+                    if (words === 12) {
+                        wordCounter.style.color = 'var(--accent-blue)';
+                    } else {
+                        wordCounter.style.color = 'var(--text-muted)';
+                    }
+                });
+            }
+
+            // Cryptography Helpers (AES-GCM 256-bit with PBKDF2)
+            async function deriveKey(password, salt) {
+                const encoder = new TextEncoder();
+                const baseKey = await window.crypto.subtle.importKey(
+                    "raw",
+                    encoder.encode(password),
+                    "PBKDF2",
+                    false,
+                    ["deriveKey"]
+                );
+                return window.crypto.subtle.deriveKey(
+                    {
+                        name: "PBKDF2",
+                        salt: salt,
+                        iterations: 100000,
+                        hash: "SHA-256"
+                    },
+                    baseKey,
+                    { name: "AES-GCM", length: 256 },
+                    false,
+                    ["encrypt", "decrypt"]
+                );
+            }
+
+            async function encryptText(text, password) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(text);
+                const salt = window.crypto.getRandomValues(new Uint8Array(16));
+                const iv = window.crypto.getRandomValues(new Uint8Array(12));
+                const key = await deriveKey(password, salt);
+                
+                const ciphertext = await window.crypto.subtle.encrypt(
+                    { name: "AES-GCM", iv: iv },
+                    key,
+                    data
+                );
+
+                const combined = new Uint8Array(salt.byteLength + iv.byteLength + ciphertext.byteLength);
+                combined.set(salt, 0);
+                combined.set(iv, salt.byteLength);
+                combined.set(new Uint8Array(ciphertext), salt.byteLength + iv.byteLength);
+
+                let binary = '';
+                const len = combined.byteLength;
+                for (let i = 0; i < len; i++) {
+                    binary += String.fromCharCode(combined[i]);
+                }
+                return window.btoa(binary);
+            }
+
+            async function decryptText(encryptedBase64, password) {
+                const binary = window.atob(encryptedBase64.trim().replace(/\s+/g, ''));
+                const len = binary.length;
+                const combined = new Uint8Array(len);
+                for (let i = 0; i < len; i++) {
+                    combined[i] = binary.charCodeAt(i);
+                }
+
+                if (combined.byteLength < 28) {
+                    throw new Error("Formato de cifrado inválido.");
+                }
+
+                const salt = combined.slice(0, 16);
+                const iv = combined.slice(16, 28);
+                const ciphertext = combined.slice(28);
+
+                const key = await deriveKey(password, salt);
+                const decrypted = await window.crypto.subtle.decrypt(
+                    { name: "AES-GCM", iv: iv },
+                    key,
+                    ciphertext
+                );
+
+                const decoder = new TextDecoder();
+                return decoder.decode(decrypted);
+            }
+
+            // Encrypt Action
+            const encryptBtn = document.getElementById('encrypt-btn');
+            const encryptResult = document.getElementById('encrypt-result');
+            const encryptOutput = document.getElementById('encrypt-output');
+            const encryptPassword = document.getElementById('encrypt-password');
+
+            if (encryptBtn && encryptResult && encryptOutput && encryptPassword) {
+                encryptBtn.addEventListener('click', async () => {
+                    const text = encryptInput.value.trim();
+                    const password = encryptPassword.value;
+
+                    if (!text) {
+                        alert('Por favor, ingresa el texto a encriptar.');
+                        return;
+                    }
+                    if (!password) {
+                        alert('Por favor, ingresa una clave secreta.');
+                        return;
+                    }
+
+                    encryptBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Encriptando...';
+                    encryptBtn.disabled = true;
+
+                    try {
+                        const encrypted = await encryptText(text, password);
+                        encryptOutput.textContent = encrypted;
+                        encryptResult.classList.add('active');
+                    } catch (error) {
+                        console.error(error);
+                        alert('Error al encriptar: ' + error.message);
+                    } finally {
+                        encryptBtn.innerHTML = '<i class="fa-solid fa-lock"></i> Encriptar Texto';
+                        encryptBtn.disabled = false;
+                    }
+                });
+            }
+
+            // Decrypt Action
+            const decryptInput = document.getElementById('decrypt-input');
+            const decryptBtn = document.getElementById('decrypt-btn');
+            const decryptResult = document.getElementById('decrypt-result');
+            const decryptOutput = document.getElementById('decrypt-output');
+            const decryptPassword = document.getElementById('decrypt-password');
+
+            if (decryptInput && decryptBtn && decryptResult && decryptOutput && decryptPassword) {
+                decryptBtn.addEventListener('click', async () => {
+                    const encryptedBase64 = decryptInput.value.trim();
+                    const password = decryptPassword.value;
+
+                    if (!encryptedBase64) {
+                        alert('Por favor, ingresa el texto encriptado en Base64.');
+                        return;
+                    }
+                    if (!password) {
+                        alert('Por favor, ingresa la clave secreta.');
+                        return;
+                    }
+
+                    decryptBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Desencriptando...';
+                    decryptBtn.disabled = true;
+
+                    try {
+                        const decrypted = await decryptText(encryptedBase64, password);
+                        decryptOutput.textContent = decrypted;
+                        decryptResult.classList.add('active');
+                        decryptOutput.style.color = '#fff';
+                    } catch (error) {
+                        console.error(error);
+                        decryptOutput.textContent = 'ERROR: Clave secreta incorrecta o los datos encriptados están corruptos.';
+                        decryptOutput.style.color = '#ff5e5e';
+                        decryptResult.classList.add('active');
+                    } finally {
+                        decryptBtn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Desencriptar Texto';
+                        decryptBtn.disabled = false;
+                    }
+                });
+            }
+
+            // Copy to Clipboard Buttons
+            function setupCopyBtn(btnId, outputId) {
+                const btn = document.getElementById(btnId);
+                const output = document.getElementById(outputId);
+                if (!btn || !output) return;
+                const originalIcon = btn.innerHTML;
+
+                btn.addEventListener('click', () => {
+                    const textToCopy = output.textContent;
+                    if (!textToCopy || textToCopy.startsWith('ERROR:')) return;
+
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        btn.innerHTML = '<i class="fa-solid fa-check"></i>';
+                        btn.style.background = '#00ff6622';
+                        btn.style.color = '#00ff66';
+                        setTimeout(() => {
+                            btn.innerHTML = originalIcon;
+                            btn.style.background = '';
+                            btn.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Error al copiar: ', err);
+                    });
+                });
+            }
+
+            setupCopyBtn('copy-encrypt-btn', 'encrypt-output');
+            setupCopyBtn('copy-decrypt-btn', 'decrypt-output');
+        })();
     </script>
 </body>
 </html>
