@@ -7,6 +7,7 @@
     <meta name="description" content="Soluciones Tecnológicas de Alto Impacto. Desde Finanzas Automatizadas hasta el Futuro del Agro. Daniel Alfonsi, Desarrollador Senior Full-Stack.">
     <link rel="stylesheet" href="index.css?v=1.1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
@@ -145,9 +146,14 @@
                     </span>
                 </div>
 
-                <button class="cryptex-action-btn" id="encrypt-btn">
-                    <i class="fa-solid fa-lock"></i> Encriptar Texto
-                </button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="cryptex-action-btn" id="encrypt-btn" style="flex-grow: 2;">
+                        <i class="fa-solid fa-lock"></i> Encriptar Texto
+                    </button>
+                    <button class="cryptex-action-btn" id="encrypt-clear-btn" style="flex-grow: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); color: var(--text-main);" title="Limpiar todos los campos de esta pestaña">
+                        <i class="fa-solid fa-trash-can"></i> Limpiar
+                    </button>
+                </div>
 
                 <div class="cryptex-result" id="encrypt-result">
                     <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Mensaje Encriptado</label>
@@ -157,6 +163,9 @@
                             <i class="fa-solid fa-copy"></i>
                         </button>
                     </div>
+                    <button class="cryptex-action-btn" id="download-pdf-btn" style="margin-top: 10px; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); color: var(--text-main);">
+                        <i class="fa-solid fa-file-pdf" style="color: #ff5e5e;"></i> Descargar PDF Seguro
+                    </button>
                 </div>
             </div>
 
@@ -177,9 +186,14 @@
                     </div>
                 </div>
 
-                <button class="cryptex-action-btn" id="decrypt-btn">
-                    <i class="fa-solid fa-lock-open"></i> Desencriptar Texto
-                </button>
+                <div style="display: flex; gap: 10px;">
+                    <button class="cryptex-action-btn" id="decrypt-btn" style="flex-grow: 2;">
+                        <i class="fa-solid fa-lock-open"></i> Desencriptar Texto
+                    </button>
+                    <button class="cryptex-action-btn" id="decrypt-clear-btn" style="flex-grow: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--glass-border); color: var(--text-main);" title="Limpiar todos los campos de esta pestaña">
+                        <i class="fa-solid fa-trash-can"></i> Limpiar
+                    </button>
+                </div>
 
                 <div class="cryptex-result" id="decrypt-result">
                     <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Mensaje Descifrado Original</label>
@@ -409,6 +423,9 @@
                         const encrypted = await encryptText(text, password);
                         encryptOutput.textContent = encrypted;
                         encryptResult.classList.add('active');
+                        setTimeout(() => {
+                            encryptResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 50);
                     } catch (error) {
                         console.error(error);
                         alert('Error al encriptar: ' + error.message);
@@ -448,11 +465,17 @@
                         decryptOutput.textContent = decrypted;
                         decryptResult.classList.add('active');
                         decryptOutput.style.color = '#fff';
+                        setTimeout(() => {
+                            decryptResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 50);
                     } catch (error) {
                         console.error(error);
                         decryptOutput.textContent = 'ERROR: Clave secreta incorrecta o los datos encriptados están corruptos.';
                         decryptOutput.style.color = '#ff5e5e';
                         decryptResult.classList.add('active');
+                        setTimeout(() => {
+                            decryptResult.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }, 50);
                     } finally {
                         decryptBtn.innerHTML = '<i class="fa-solid fa-lock-open"></i> Desencriptar Texto';
                         decryptBtn.disabled = false;
@@ -488,6 +511,98 @@
 
             setupCopyBtn('copy-encrypt-btn', 'encrypt-output');
             setupCopyBtn('copy-decrypt-btn', 'decrypt-output');
+
+            // Download PDF / Text Safe Backups
+            const downloadPdfBtn = document.getElementById('download-pdf-btn');
+            if (downloadPdfBtn) {
+                downloadPdfBtn.addEventListener('click', () => {
+                    const encryptedText = encryptOutput.textContent;
+                    if (!encryptedText) return;
+
+                    const fileName = `cryptex-mensaje-${new Date().toISOString().slice(0,10)}.pdf`;
+
+                    if (window.jspdf) {
+                        try {
+                            const { jsPDF } = window.jspdf;
+                            const doc = new jsPDF();
+                            
+                            // Header layout
+                            doc.setFont("helvetica", "bold");
+                            doc.setFontSize(16);
+                            doc.setTextColor(0, 212, 255); // Neon Accent Blue
+                            doc.text("DIDAPAX SISTEM - CRYPTEX", 14, 20);
+                            
+                            doc.setFont("helvetica", "normal");
+                            doc.setFontSize(10);
+                            doc.setTextColor(100, 116, 139); // Slate Grey
+                            doc.text("Mensaje Encriptado Localmente (AES-GCM 256-bit)", 14, 27);
+                            doc.text(`Fecha de generacion: ${new Date().toLocaleString()}`, 14, 33);
+                            
+                            // Divider line
+                            doc.setDrawColor(226, 232, 240);
+                            doc.line(14, 38, 196, 38);
+                            
+                            // Warning box
+                            doc.setFont("helvetica", "bold");
+                            doc.setFontSize(9);
+                            doc.setTextColor(239, 68, 68); // Red Alert
+                            doc.text("IMPORTANTE: Guarda este archivo de forma segura. Si modificas este texto, no podras descifrarlo.", 14, 45);
+                            
+                            // Encrypted content
+                            doc.setFont("courier", "normal");
+                            doc.setFontSize(9);
+                            doc.setTextColor(15, 23, 42); // Clean dark font
+                            const splitText = doc.splitTextToSize(encryptedText, 180);
+                            doc.text(splitText, 14, 55);
+                            
+                            doc.save(fileName);
+                        } catch (err) {
+                            console.error("Error al generar PDF: ", err);
+                            fallbackTextDownload(encryptedText);
+                        }
+                    } else {
+                        fallbackTextDownload(encryptedText);
+                    }
+                });
+            }
+
+            function fallbackTextDownload(text) {
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `cryptex-mensaje-${new Date().toISOString().slice(0,10)}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                alert("Se descargo el archivo en formato de texto (.txt) como respaldo de seguridad.");
+            }
+
+            // Clear Buttons Logic
+            const encryptClearBtn = document.getElementById('encrypt-clear-btn');
+            if (encryptClearBtn) {
+                encryptClearBtn.addEventListener('click', () => {
+                    encryptInput.value = '';
+                    encryptPassword.value = '';
+                    encryptOutput.textContent = '';
+                    encryptResult.classList.remove('active');
+                    if (wordCounter) {
+                        wordCounter.textContent = 'Palabras: 0';
+                        wordCounter.style.color = 'var(--text-muted)';
+                    }
+                });
+            }
+
+            const decryptClearBtn = document.getElementById('decrypt-clear-btn');
+            if (decryptClearBtn) {
+                decryptClearBtn.addEventListener('click', () => {
+                    decryptInput.value = '';
+                    decryptPassword.value = '';
+                    decryptOutput.textContent = '';
+                    decryptResult.classList.remove('active');
+                });
+            }
         })();
     </script>
 </body>
