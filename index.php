@@ -60,7 +60,7 @@
             </div>
             <div class="glass-card portfolio-card reveal">
                 <h3>Cryptex (Offline Safe)</h3>
-                <p>Herramienta Offline-First para cifrar y descifrar frases de recuperación (12 palabras) o cartas secretas de forma 100% local en tu dispositivo con cifrado AES-256 de grado militar.</p>
+                <p>Herramienta Offline-First para cifrar y descifrar frases de recuperación, textos o cartas de forma 100% local en tu dispositivo con cifrado AES-256 de grado militar.</p>
                 <button class="btn-link" id="open-cryptex-btn" style="border: none; cursor: pointer; text-align: center; font-family: inherit;">Abrir Cryptex</button>
             </div>
         </div>
@@ -127,8 +127,8 @@
             <!-- Panel de Encriptar -->
             <div class="cryptex-pane active" id="encrypt-pane">
                 <div class="cryptex-group">
-                    <label for="encrypt-input">Texto o Semilla (12 palabras)</label>
-                    <textarea id="encrypt-input" rows="4" placeholder="Escribe aquí tu frase de 12 palabras o tu carta secreta..."></textarea>
+                    <label for="encrypt-input">Texto o Semilla</label>
+                    <textarea id="encrypt-input" rows="4" placeholder="Escribe aquí tu texto, semilla o carta secreta..."></textarea>
                     <div id="encrypt-word-count" style="font-size: 0.8rem; color: var(--text-muted); text-align: right; margin-top: 4px;">Palabras: 0</div>
                 </div>
 
@@ -150,7 +150,7 @@
                 </button>
 
                 <div class="cryptex-result" id="encrypt-result">
-                    <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Mensaje Encriptado (Base64)</label>
+                    <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Mensaje Encriptado</label>
                     <div class="cryptex-output-box">
                         <pre id="encrypt-output"></pre>
                         <button class="cryptex-copy-btn" id="copy-encrypt-btn" title="Copiar texto encriptado">
@@ -163,7 +163,7 @@
             <!-- Panel de Desencriptar -->
             <div class="cryptex-pane" id="decrypt-pane">
                 <div class="cryptex-group">
-                    <label for="decrypt-input">Mensaje Encriptado (Base64)</label>
+                    <label for="decrypt-input">Mensaje Encriptado</label>
                     <textarea id="decrypt-input" rows="4" placeholder="Pega aquí el código encriptado generado por Cryptex..."></textarea>
                 </div>
 
@@ -432,7 +432,7 @@
                     const password = decryptPassword.value;
 
                     if (!encryptedBase64) {
-                        alert('Por favor, ingresa el texto encriptado en Base64.');
+                        alert('Por favor, ingresa el texto encriptado.');
                         return;
                     }
                     if (!password) {
