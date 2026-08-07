@@ -5,21 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Didapax Sistem | Daniel Alfonsi Portfolio</title>
     <meta name="description" content="Soluciones Tecnológicas de Alto Impacto. Desde Finanzas Automatizadas hasta el Futuro del Agro. Daniel Alfonsi, Desarrollador Senior Full-Stack.">
-    <link rel="stylesheet" href="index.css?v=1.1">
+    <link rel="stylesheet" href="index.css?v=1.2">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
+    <!-- Fullscreen Splash Overlay -->
+    <div class="splash-overlay" id="splash-overlay">
+        <div class="splash-card">
+            <div class="splash-logo-container">
+                <div class="splash-logo-ring"></div>
+                <img src="assets/img/logo.png" alt="Didapax Sistem Logo" class="splash-logo-img">
+            </div>
+            <h2 class="splash-title">DIDAPAX SISTEM</h2>
+            <p class="splash-subtitle">Soluciones Tecnológicas de Alto Impacto & Ecosistemas Digitales</p>
+            <div class="splash-progress-bar">
+                <div class="splash-progress-fill" id="splash-progress-fill"></div>
+            </div>
+            <button class="splash-enter-btn" id="splash-enter-btn">
+                <span>Entrar al Ecosistema</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
     <div class="bg-gradient"></div>
 
     <nav>
-        <a href="#" class="logo">DIDAPAX<span>SISTEM</span></a>
+        <a href="#" class="logo">
+            <div class="nav-logo-badge">
+                <img src="assets/img/logo.png" alt="Didapax Logo" class="nav-logo-img">
+            </div>
+            <div class="logo-text">DIDAPAX<span>SISTEM</span></div>
+        </a>
         <div class="nav-links">
             <a href="#about">Sobre Mí</a>
             <a href="#portfolio">Portafolio</a>
             <a href="#values">Valores</a>
             <a href="#contact">Contacto</a>
+            <button class="nav-splash-btn" id="reopen-splash-btn" title="Ver Splash Screen Intro">
+                <i class="fa-solid fa-play"></i> Splash
+            </button>
         </div>
         <div class="menu-toggle" id="mobile-menu">
             <div class="bar"></div>
@@ -29,6 +55,9 @@
     </nav>
 
     <header class="hero">
+        <div class="hero-emblem reveal">
+            <img src="assets/img/logo.png" alt="Didapax Emblem" class="hero-logo-img">
+        </div>
         <h1 class="reveal">Didapax Sistem</h1>
         <p class="subtitle reveal">Soluciones Tecnológicas de Alto Impacto: Desde Finanzas Automatizadas hasta el Futuro del Agro.</p>
         <p class="hero-intro reveal">Soy Daniel Alfonsi, desarrollador Senior Full-Stack y fundador de Didapax Sistem. Me especializo en crear ecosistemas digitales robustos que resuelven problemas del mundo real mediante arquitecturas optimizadas y escalables.</p>
@@ -36,8 +65,21 @@
 
     <section id="about" class="reveal">
         <h2 class="section-title">Perfil <span>Profesional</span></h2>
-        <div class="glass-card">
-            <p>Con una sólida trayectoria en el desarrollo de software, combino la ingeniería de datos con una visión comercial pragmática. Mi enfoque se centra en el desarrollo <strong>Offline-First</strong>, garantizando que las aplicaciones funcionen de manera eficiente incluso en entornos de conectividad inestable. Como desarrollador, manejo un stack diverso que incluye Python, PHP, Node.js y AppSheet, permitiéndome construir desde complejos bots de trading hasta sistemas de gestión logística.</p>
+        <div class="about-grid">
+            <div class="glass-card">
+                <p>Con una sólida trayectoria en el desarrollo de software, combino la ingeniería de datos con una visión comercial pragmática. Mi enfoque se centra en el desarrollo <strong>Offline-First</strong>, garantizando que las aplicaciones funcionen de manera eficiente incluso en entornos de conectividad inestable.</p>
+                <p style="margin-top: 1rem;">Como desarrollador, manejo un stack diverso que incluye Python, PHP, Node.js y AppSheet, permitiéndome construir desde complejos bots de trading hasta sistemas de gestión logística.</p>
+            </div>
+            <div class="about-banner-card">
+                <img src="assets/img/splash.jpg" alt="Didapax Architecture Splash" class="about-banner-img">
+                <div class="about-banner-overlay">
+                    <img src="assets/img/logo.png" alt="Didapax Emblem" class="about-banner-logo">
+                    <div class="about-banner-title">Didapax Tech Stack</div>
+                    <div class="about-banner-badge">
+                        <i class="fa-solid fa-microchip"></i> High-Impact Software Systems
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -88,7 +130,10 @@
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-info">
-                <h4>Daniel Alfonsi</h4>
+                <div class="footer-brand">
+                    <img src="assets/img/logo.png" alt="Didapax Logo" class="footer-logo-img">
+                    <h4 style="margin-bottom: 0;">Daniel Alfonsi</h4>
+                </div>
                 <p>Fundador de Didapax Sistem</p>
                 <p><i class="fa-solid fa-location-dot"></i> Ubicación: Sucre, Venezuela.</p>
             </div>
@@ -209,6 +254,64 @@
     </div>
 
     <script>
+        // Splash Overlay Controller
+        (function() {
+            const splashOverlay = document.getElementById('splash-overlay');
+            const progressFill = document.getElementById('splash-progress-fill');
+            const enterBtn = document.getElementById('splash-enter-btn');
+            const reopenBtn = document.getElementById('reopen-splash-btn');
+
+            if (!splashOverlay) return;
+
+            let progress = 0;
+            let progressInterval = null;
+
+            function startSplashProgress() {
+                progress = 0;
+                if (progressFill) progressFill.style.width = '0%';
+                splashOverlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+
+                clearInterval(progressInterval);
+                progressInterval = setInterval(() => {
+                    progress += 2.5;
+                    if (progressFill) progressFill.style.width = `${Math.min(progress, 100)}%`;
+
+                    if (progress >= 100) {
+                        clearInterval(progressInterval);
+                        setTimeout(hideSplash, 350);
+                    }
+                }, 40);
+            }
+
+            function hideSplash() {
+                clearInterval(progressInterval);
+                splashOverlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+
+            if (enterBtn) {
+                enterBtn.addEventListener('click', hideSplash);
+            }
+
+            if (reopenBtn) {
+                reopenBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    startSplashProgress();
+                });
+            }
+
+            // Dismiss splash on Escape key
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !splashOverlay.classList.contains('hidden')) {
+                    hideSplash();
+                }
+            });
+
+            // Start splash progress on load
+            startSplashProgress();
+        })();
+
         // Simple Intersection Observer to reveal elements on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
