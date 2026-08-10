@@ -11,24 +11,6 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
 </head>
 <body>
-    <!-- Fullscreen Splash Overlay -->
-    <div class="splash-overlay" id="splash-overlay">
-        <div class="splash-card">
-            <div class="splash-logo-container">
-                <div class="splash-logo-ring"></div>
-                <img src="assets/img/logo.png" alt="Didapax Sistem Logo" class="splash-logo-img">
-            </div>
-            <h2 class="splash-title">DIDAPAX SISTEM</h2>
-            <p class="splash-subtitle">Soluciones Tecnológicas de Alto Impacto & Ecosistemas Digitales</p>
-            <div class="splash-progress-bar">
-                <div class="splash-progress-fill" id="splash-progress-fill"></div>
-            </div>
-            <button class="splash-enter-btn" id="splash-enter-btn">
-                <span>Entrar al Ecosistema</span> <i class="fa-solid fa-arrow-right"></i>
-            </button>
-        </div>
-    </div>
-
     <div class="bg-gradient"></div>
 
     <nav>
@@ -43,9 +25,6 @@
             <a href="#portfolio">Portafolio</a>
             <a href="#values">Valores</a>
             <a href="#contact">Contacto</a>
-            <button class="nav-splash-btn" id="reopen-splash-btn" title="Ver Splash Screen Intro">
-                <i class="fa-solid fa-play"></i> Splash
-            </button>
         </div>
         <div class="menu-toggle" id="mobile-menu">
             <div class="bar"></div>
@@ -254,64 +233,6 @@
     </div>
 
     <script>
-        // Splash Overlay Controller
-        (function() {
-            const splashOverlay = document.getElementById('splash-overlay');
-            const progressFill = document.getElementById('splash-progress-fill');
-            const enterBtn = document.getElementById('splash-enter-btn');
-            const reopenBtn = document.getElementById('reopen-splash-btn');
-
-            if (!splashOverlay) return;
-
-            let progress = 0;
-            let progressInterval = null;
-
-            function startSplashProgress() {
-                progress = 0;
-                if (progressFill) progressFill.style.width = '0%';
-                splashOverlay.classList.remove('hidden');
-                document.body.style.overflow = 'hidden';
-
-                clearInterval(progressInterval);
-                progressInterval = setInterval(() => {
-                    progress += 2.5;
-                    if (progressFill) progressFill.style.width = `${Math.min(progress, 100)}%`;
-
-                    if (progress >= 100) {
-                        clearInterval(progressInterval);
-                        setTimeout(hideSplash, 350);
-                    }
-                }, 40);
-            }
-
-            function hideSplash() {
-                clearInterval(progressInterval);
-                splashOverlay.classList.add('hidden');
-                document.body.style.overflow = '';
-            }
-
-            if (enterBtn) {
-                enterBtn.addEventListener('click', hideSplash);
-            }
-
-            if (reopenBtn) {
-                reopenBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    startSplashProgress();
-                });
-            }
-
-            // Dismiss splash on Escape key
-            window.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && !splashOverlay.classList.contains('hidden')) {
-                    hideSplash();
-                }
-            });
-
-            // Start splash progress on load
-            startSplashProgress();
-        })();
-
         // Simple Intersection Observer to reveal elements on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
