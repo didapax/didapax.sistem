@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Didapax Sistem | Daniel Alfonsi Portfolio</title>
     <meta name="description" content="Soluciones Tecnológicas de Alto Impacto. Desde Finanzas Automatizadas hasta el Futuro del Agro. Daniel Alfonsi, Desarrollador Senior Full-Stack.">
-    <link rel="stylesheet" href="index.css?v=1.2">
+    <link rel="stylesheet" href="index.css?v=1.3">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -66,24 +66,100 @@
         <h2 class="section-title reveal">The <span>Hub</span>: Proyectos</h2>
         <div class="portfolio-grid">
             <div class="glass-card portfolio-card reveal">
+                <div class="portfolio-card-top">
+                    <div class="portfolio-card-icon">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                </div>
                 <h3>Algometric (Fintech)</h3>
+                <div class="portfolio-tags">
+                    <span class="tech-tag">Algorithmic Trading</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Stochastic / MACD</span>
+                </div>
                 <p>Plataforma avanzada de análisis técnico y trading automatizado. Implementación de algoritmos basados en indicadores de precisión (Stochastic, MACD, Fibonacci) para la optimización de activos digitales.</p>
-                <a href="https://algometric.biz/signal" target="_blank" class="btn-link">Visitar Algometric</a>
+                <a href="https://algometric.biz/signal" target="_blank" rel="noopener noreferrer" class="btn-link">
+                    <span>Visitar Algometric</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
             </div>
+
+            <div class="glass-card portfolio-card featured-project reveal">
+                <div class="portfolio-card-top">
+                    <div class="portfolio-card-icon preppers-icon">
+                        <i class="fa-solid fa-basket-shopping"></i>
+                    </div>
+                    <span class="card-featured-badge"><i class="fa-solid fa-bolt"></i> En Producción</span>
+                </div>
+                <h3>Preppers Market</h3>
+                <div class="portfolio-tags">
+                    <span class="tech-tag">React 19 / PWA</span>
+                    <span class="tech-tag">Social Commerce</span>
+                    <span class="tech-tag">QR Multi-Rol</span>
+                </div>
+                <p>Red Comunitaria de Consumo sin fines de lucro. Ecosistema digital moderno con arquitectura PWA y panel de gestión integral, conectando directamente a productores locales con familias para acceder a productos al detalle a precios mayoristas.</p>
+                <a href="https://preppersmarket.site/" target="_blank" rel="noopener noreferrer" class="btn-link btn-preppers">
+                    <span>Visitar Preppers Market</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+
             <div class="glass-card portfolio-card reveal">
+                <div class="portfolio-card-top">
+                    <div class="portfolio-card-icon">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                </div>
                 <h3>Bitcacao / Koawallet</h3>
+                <div class="portfolio-tags">
+                    <span class="tech-tag">AgroTech</span>
+                    <span class="tech-tag">Tokenización</span>
+                    <span class="tech-tag">Trazabilidad</span>
+                </div>
                 <p>Transformando la industria del cacao mediante la tokenización de peso y el control de calidad digital. Una solución integral para la trazabilidad y el empoderamiento de los productores locales.</p>
-                <a href="https://bitcacao.biz" target="_blank" class="btn-link">Visitar BitCacao</a>
+                <a href="https://bitcacao.biz" target="_blank" rel="noopener noreferrer" class="btn-link">
+                    <span>Visitar BitCacao</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
             </div>
+
             <div class="glass-card portfolio-card reveal">
+                <div class="portfolio-card-top">
+                    <div class="portfolio-card-icon">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                </div>
                 <h3>Aura Protocol</h3>
+                <div class="portfolio-tags">
+                    <span class="tech-tag">IA Educativa</span>
+                    <span class="tech-tag">Auditoría Académica</span>
+                    <span class="tech-tag">Virtual Campus</span>
+                </div>
                 <p>Ecosistema educativo diseñado para el monitoreo del conocimiento mediante inteligencia artificial, facilitando la gestión de aulas virtuales y auditorías académicas.</p>
-                <a href="#" class="btn-link">Ver Proyecto</a>
+                <a href="#" class="btn-link">
+                    <span>Ver Proyecto</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
             </div>
+
             <div class="glass-card portfolio-card reveal">
+                <div class="portfolio-card-top">
+                    <div class="portfolio-card-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="card-tag-offline"><i class="fa-solid fa-lock"></i> 100% Offline</span>
+                </div>
                 <h3>Cryptex (Offline Safe)</h3>
+                <div class="portfolio-tags">
+                    <span class="tech-tag">AES-256 GCM</span>
+                    <span class="tech-tag">Web Cryptography</span>
+                    <span class="tech-tag">PDF Seguro</span>
+                </div>
                 <p>Herramienta Offline-First para cifrar y descifrar frases de recuperación, textos o cartas de forma 100% local en tu dispositivo con cifrado AES-256 de grado militar.</p>
-                <button class="btn-link" id="open-cryptex-btn" style="border: none; cursor: pointer; text-align: center; font-family: inherit;">Abrir Cryptex</button>
+                <button class="btn-link" id="open-cryptex-btn" style="border: none; cursor: pointer; text-align: center; font-family: inherit;">
+                    <span>Abrir Cryptex</span>
+                    <i class="fa-solid fa-key"></i>
+                </button>
             </div>
         </div>
     </section>
