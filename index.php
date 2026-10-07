@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Didapax Sistem | Daniel Alfonsi Portfolio</title>
-    <meta name="description" content="Soluciones Tecnológicas de Alto Impacto. Desde Finanzas Automatizadas hasta el Futuro del Agro. Daniel Alfonsi, Desarrollador Senior Full-Stack.">
-    <link rel="stylesheet" href="index.css?v=1.3">
+    <title>Didapax Sistem | Soluciones Tecnológicas & Software</title>
+    <meta name="description" content="Didapax Sistem: Firma de desarrollo de software y soluciones tecnológicas de alto impacto. Arquitecturas Offline-First, Fintech, AgroTech y sistemas distribuidos. Venezuela.">
+    <link rel="stylesheet" href="index.css?v=1.4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -21,9 +21,10 @@
             <div class="logo-text">DIDAPAX<span>SISTEM</span></div>
         </a>
         <div class="nav-links">
-            <a href="#about">Sobre Mí</a>
+            <a href="#about">Empresa</a>
             <a href="#portfolio">Portafolio</a>
-            <a href="#values">Valores</a>
+            <a href="#values">Capacidades</a>
+            <a href="fundador.php" class="nav-founder-link"><i class="fa-solid fa-user-tie"></i> Fundador</a>
             <a href="#contact">Contacto</a>
         </div>
         <div class="menu-toggle" id="mobile-menu">
@@ -39,15 +40,16 @@
         </div>
         <h1 class="reveal">Didapax Sistem</h1>
         <p class="subtitle reveal">Soluciones Tecnológicas de Alto Impacto: Desde Finanzas Automatizadas hasta el Futuro del Agro.</p>
-        <p class="hero-intro reveal">Soy Daniel Alfonsi, desarrollador Senior Full-Stack y fundador de Didapax Sistem. Me especializo en crear ecosistemas digitales robustos que resuelven problemas del mundo real mediante arquitecturas optimizadas y escalables.</p>
+        <p class="hero-intro reveal">Firma especializada en ingeniería de software y desarrollo de ecosistemas digitales de alto rendimiento. Diseñamos soluciones empresariales a medida, arquitecturas distribuidas y plataformas orientadas a la resiliencia operativa y la escalabilidad continua.</p>
     </header>
 
     <section id="about" class="reveal">
-        <h2 class="section-title">Perfil <span>Profesional</span></h2>
+        <h2 class="section-title">Sobre <span>Didapax Sistem</span></h2>
         <div class="about-grid">
             <div class="glass-card">
-                <p>Con una sólida trayectoria en el desarrollo de software, combino la ingeniería de datos con una visión comercial pragmática. Mi enfoque se centra en el desarrollo <strong>Offline-First</strong>, garantizando que las aplicaciones funcionen de manera eficiente incluso en entornos de conectividad inestable.</p>
-                <p style="margin-top: 1rem;">Como desarrollador, manejo un stack diverso que incluye Python, PHP, Node.js y AppSheet, permitiéndome construir desde complejos bots de trading hasta sistemas de gestión logística.</p>
+                <p><strong>Didapax Sistem</strong> es una firma de desarrollo tecnológico enfocada en transformar complejidades operativas en plataformas digitales robustas, eficientes y seguras. Combinamos la ingeniería de datos con una visión pragmática para construir software que genera valor real y sostenible.</p>
+                <p style="margin-top: 1rem;">Destacamos por nuestro enfoque pionero <strong>Offline-First</strong>, garantizando que los sistemas continúen operando con total autonomía y fiabilidad, incluso bajo condiciones de conectividad inestable o nula.</p>
+                <p style="margin-top: 1rem;">Nuestro alcance abarca desde plataformas Fintech con modelos algorítmicos automatizados y soluciones AgroTech para trazabilidad y tokenización, hasta herramientas criptográficas de grado de privacidad y aplicaciones web progresivas (PWA) de última generación.</p>
             </div>
             <div class="about-banner-card">
                 <img src="assets/img/splash.jpg" alt="Didapax Architecture Splash" class="about-banner-img">
@@ -165,19 +167,19 @@
     </section>
 
     <section id="values">
-        <h2 class="section-title reveal">Valores <span>Técnicos</span></h2>
+        <h2 class="section-title reveal">Capacidades <span>Técnicas</span></h2>
         <div class="values-grid">
             <div class="glass-card reveal">
-                <h4>Arquitectura de Datos</h4>
-                <p>Especialista en sincronización de bases de datos distribuidas y sistemas orientados a eventos.</p>
+                <h4>Arquitectura de Datos & Sistemas</h4>
+                <p>Diseño e implementación de bases de datos distribuidas, sincronización resiliente y arquitecturas orientadas a eventos para alta concurrencia.</p>
             </div>
             <div class="glass-card reveal">
-                <h4>Seguridad y Estabilidad</h4>
-                <p>Implementación de servidores Nginx de alta disponibilidad y gestión segura de sesiones y datos.</p>
+                <h4>Seguridad & Criptografía</h4>
+                <p>Infraestructura de alta disponibilidad, cifrado nativo de última generación y protección rigurosa de datos e integridad de sistemas.</p>
             </div>
             <div class="glass-card reveal">
-                <h4>Innovación Local</h4>
-                <p>Desarrollo de redes de consumo comunitario y herramientas que impulsan la economía regional.</p>
+                <h4>Innovación & Desarrollo Aplicado</h4>
+                <p>Creación de herramientas estratégicas que modernizan la economía regional, cadenas productivas y redes de comercio comunitario.</p>
             </div>
         </div>
     </section>
@@ -187,10 +189,20 @@
             <div class="footer-info">
                 <div class="footer-brand">
                     <img src="assets/img/logo.png" alt="Didapax Logo" class="footer-logo-img">
-                    <h4 style="margin-bottom: 0;">Daniel Alfonsi</h4>
+                    <h4 style="margin-bottom: 0;">Didapax Sistem</h4>
                 </div>
-                <p>Fundador de Didapax Sistem</p>
-                <p><i class="fa-solid fa-location-dot"></i> Ubicación: Sucre, Venezuela.</p>
+                <p>Firma de Ingeniería de Software & Ecosistemas Digitales.</p>
+                <p><i class="fa-solid fa-location-dot"></i> Ubicación: Venezuela</p>
+            </div>
+            <div class="footer-info">
+                <h4>Fundador</h4>
+                <p>
+                    <a href="fundador.php" class="footer-founder-link">
+                        <i class="fa-solid fa-user-tie"></i> Daniel Alfonsi
+                        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.75rem; margin-left: 4px;"></i>
+                    </a>
+                </p>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">Conoce la visión, trayectoria y perfil técnico del fundador.</p>
             </div>
             <div class="footer-info">
                 <h4>Soporte</h4>
@@ -198,10 +210,11 @@
             </div>
             <div class="footer-info">
                 <h4>Enlaces Rápidos</h4>
+                <p><a href="fundador.php" style="color: var(--text-main); text-decoration: none;"><i class="fa-solid fa-user"></i> Daniel Alfonsi</a></p>
                 <p><a href="https://github.com/didapax" target="_blank" style="color: var(--accent-blue); text-decoration: none;"><i class="fa-brands fa-github"></i> GitHub</a></p>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">&copy; <?php echo date('Y'); ?> Didapax Sistem Daniel Alfonsi. Todos los derechos reservados.</p>
+        <p style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem;">&copy; <?php echo date('Y'); ?> Didapax Sistem. Todos los derechos reservados.</p>
     </footer>
 
     <!-- Cryptex Modal -->
