@@ -23,8 +23,6 @@
         <div class="nav-links">
             <a href="index.php">Inicio</a>
             <a href="index.php#about">Empresa</a>
-            <a href="index.php#portfolio">Portafolio</a>
-            <a href="index.php#values">Capacidades</a>
             <a href="index.php#contact">Contacto</a>
             <a href="index.php" class="nav-founder-link"><i class="fa-solid fa-arrow-left"></i> Volver a la Empresa</a>
         </div>

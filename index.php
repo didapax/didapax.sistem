@@ -22,9 +22,6 @@
         </a>
         <div class="nav-links">
             <a href="#about">Empresa</a>
-            <a href="#portfolio">Portafolio</a>
-            <a href="#values">Capacidades</a>
-            <a href="fundador.php" class="nav-founder-link"><i class="fa-solid fa-user-tie"></i> Fundador</a>
             <a href="#contact">Contacto</a>
         </div>
         <div class="menu-toggle" id="mobile-menu">
